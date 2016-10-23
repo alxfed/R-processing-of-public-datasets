@@ -86,7 +86,7 @@ df <- read.csv("Beach_Weather_Stations_-_Automated_Sensors_-_2016_-_Humidity.csv
 qplot(Measurement.Timestamp, Air.Temperature, data = df, colour = Station.Name)
 ```
 
-Not exactly OK with the Dates read from the *.csv file.
+Not exactly OK with the Dates that were read from the *.csv file.
 
 
 When you save the notebook, an HTML file containing the code and output will be saved alongside it (click the *Preview* button or press *Ctrl+Shift+K* to preview the HTML file).
