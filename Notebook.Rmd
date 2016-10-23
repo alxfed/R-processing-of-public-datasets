@@ -131,6 +131,17 @@ Let's start with the dates
   save(df, file = "df.rda")
 ```
 
+Let's try to re-plot the same
+
+```{r}
+qplot(Measurement.Timestamp, Air.Temperature, data = df, colour = Station.Name)
+```
+
+Now the 10-day gap is in place. Let's massage the graph a little bit
+
+```{r}
+qplot(Measurement.Timestamp, Air.Temperature, data = df, size = I(.7), alpha = I(1/2), colour = Station.Name)
+```
 
 
 When you save the notebook, an HTML file containing the code and output will be saved alongside it (click the *Preview* button or press *Ctrl+Shift+K* to preview the HTML file).
