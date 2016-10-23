@@ -34,5 +34,20 @@ library("RSocrata", lib.loc="~/R/win-library/3.3")
 fdf <- read.socrata("https://data.cityofchicago.org/resource/7edu-s3u7.csv?$where=station_name=\"Foster Weather Station\"")
 ```
 
+THis query read 6469 observations of 18 variables. Let's do the same with the other two stations.
+
+```{r}
+odf <- read.socrata("https://data.cityofchicago.org/resource/7edu-s3u7.csv?$where=station_name=\"Oak Street Weather Station\"")
+
+sdf <- read.socrata("https://data.cityofchicago.org/resource/7edu-s3u7.csv?$where=station_name=\"63rd Street Weather Station\"")
+```
+
+Let's backup this data as *.rda files... just in case.
+
+```{r}
+save(fdf, file = "fdf.rda")
+save(odf, file = "odf.rda")
+save(sdf, file = "sdf.rda")
+```
 
 When you save the notebook, an HTML file containing the code and output will be saved alongside it (click the *Preview* button or press *Ctrl+Shift+K* to preview the HTML file).
