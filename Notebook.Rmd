@@ -59,21 +59,34 @@ Now we can attempt plotting a little bit
 ```{r}
 library("ggplot2", lib.loc="~/R/win-library/3.3")
 
-qplot(fdf$Measurement.Timestamp, fdf$Air.Temperature, color = I("magenta"), 
+qplot(Measurement.Timestamp, Air.Temperature, data = fdf, color = I("magenta"), 
       size = I(.5), alpha = I(1/2))
 ```
 
 
-As we can see ggplo2 'understands' our Date/Time format. Interestingly enough there is a gap in data in May.
+As we can see ggplot2 'understands' our Date/Time format. Interestingly enough there is a gap in data in May.
 
 ```{r}
-qplot(sdf$Measurement.Timestamp, sdf$Air.Temperature, color = I("red"), 
+qplot(Measurement.Timestamp, Air.Temperature, data = sdf, color = I("red"), 
       size = I(.5), alpha = I(1/2))
 ```
 
 ```{r}
-qplot(odf$Measurement.Timestamp, odf$Air.Temperature, color = I("green"), 
+qplot(Measurement.Timestamp, Air.Temperature, data = odf, color = I("green"), 
       size = I(.5), alpha = I(1/2))
 ```
+
+The direct observation of data shows that indeed the gap (starting after May 9, 13:00 and until May 19 10am) exists.
+
+All together Now!
+
+```{r}
+#df will be re-used for complete data set
+df <- read.csv("Beach_Weather_Stations_-_Automated_Sensors_-_2016_-_Humidity.csv")
+qplot(Measurement.Timestamp, Air.Temperature, data = df, colour = Station.Name)
+```
+
+Not exactly OK with the Dates read from the *.csv file.
+
 
 When you save the notebook, an HTML file containing the code and output will be saved alongside it (click the *Preview* button or press *Ctrl+Shift+K* to preview the HTML file).
