@@ -86,7 +86,51 @@ df <- read.csv("Beach_Weather_Stations_-_Automated_Sensors_-_2016_-_Humidity.csv
 qplot(Measurement.Timestamp, Air.Temperature, data = df, colour = Station.Name)
 ```
 
-Not exactly OK with the Dates that were read from the *.csv file.
+Not exactly OK with the Dates that were read from the *.csv file. There is no gap on the time scale which probably means that time is a factor.
+Even the number of observations doesn't match the sum of the observations obtained from the Socrata warehouse.
+
+Let's start with the dates
+
+```{r}
+# we need
+# to deal with date-time that is represented by a factor after
+# loading. Let's append four columns to the data frame, then
+# position them after the Measurement.Timestamp. 
+  
+  df$Hour <-0; df$Day <- 0; df$Month <- 0
+  df <- df[,c("Station.Name", 
+                        "Measurement.Timestamp", 
+                        "Hour", "Day", "Month", 
+                        "Air.Temperature", 
+                        "Wet.Bulb.Temperature", "Humidity", 
+                        "Rain.Intensity", "Interval.Rain", 
+                        "Total.Rain", "Precipitation.Type", 
+                        "Wind.Direction", "Wind.Speed", 
+                        "Maximum.Wind.Speed", "Barometric.Pressure", 
+                        "Solar.Radiation", "Heading", 
+                        "Battery.Life", 
+                        "Measurement.Timestamp.Label", 
+                        "Measurement.ID")]
+
+#Then we convert the Measurement.Timestamp to character
+#then - to POSIXlt
+  
+  df$Measurement.Timestamp <- as.character.POSIXt(df$Measurement.Timestamp)
+  df$Measurement.Timestamp <- as.POSIXlt(df$Measurement.Timestamp, 
+                                 format = "%m/%d/%Y %H:%M", tz="")
+
+## about dates format: http://www.stat.berkeley.edu/classes/s133/dates.html
+# fill in the columns Hour Day (day of the year mday for anthr) Month
+  
+  df$Hour <- df$Measurement.Timestamp$hour
+  df$Day <- df$Measurement.Timestamp$yday
+  df$Month <- df$Measurement.Timestamp$mon
+  
+# now let's save the result
+  
+  save(df, file = "df.rda")
+```
+
 
 
 When you save the notebook, an HTML file containing the code and output will be saved alongside it (click the *Preview* button or press *Ctrl+Shift+K* to preview the HTML file).
