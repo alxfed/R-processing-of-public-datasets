@@ -131,7 +131,7 @@ Let's start with the dates
   save(df, file = "df.rda")
 ```
 
-Let's try to re-plot the same
+Along the way I added the numbers of the Hour, Day and Month (starting from zero) for accumulation (later). Now let's try to re-plot the same
 
 ```{r}
 qplot(Measurement.Timestamp, Air.Temperature, data = df, colour = Station.Name)
