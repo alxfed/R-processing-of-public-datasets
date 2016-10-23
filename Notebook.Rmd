@@ -7,9 +7,19 @@ output:
 
 This is a simple [R Markdown](http://rmarkdown.rstudio.com) Notebook. When you execute code within the notebook, the results appear beneath the code. 
 
+## Chicago Weather from weather stations
+
+The  URLs for data are on the portal https://data.cityofchicago.org/ 
+
+In particular the hourly data from the three beach weather stations has a Base URL: 
+https://data.cityofchicago.org/resource/7edu-s3u7.json 
+The API documentation for this dataset is at:
+https://dev.socrata.com/foundry/data.cityofchicago.org/77jv-5zb8
+
+Let's read the dataset and display the 'head' of it:
 
 ```{r}
-df <- read.csv("Beach_Weather_Stations_Automated_Sensors_2016_Humidity.csv")
+df <- read.csv("https://data.cityofchicago.org/resource/7edu-s3u7.csv")
 head(df)
 
 ```
