@@ -50,4 +50,8 @@ save(odf, file = "odf.rda")
 save(sdf, file = "sdf.rda")
 ```
 
+Also, let's download everything that can be downloaded directly from the web as a *.csv and re-save it in Excel, in case some weird formatting will get in the way. We will also have a combined data frame then and will be able to assign a category to a weather station and use it later in graphics.
+It is in the directory, stored as: "Beach_Weather_Stations_-_Automated_Sensors_-_2016_-_Humidity.csv"
+
+
 When you save the notebook, an HTML file containing the code and output will be saved alongside it (click the *Preview* button or press *Ctrl+Shift+K* to preview the HTML file).
