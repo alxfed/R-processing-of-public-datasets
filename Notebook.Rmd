@@ -54,7 +54,26 @@ Also, let's download everything that can be downloaded directly from the web as 
 It is in the directory, stored as: "Beach_Weather_Stations_-_Automated_Sensors_-_2016_-_Humidity.csv"
 Downloaded and added the same for 2015 and the "Beach_Water_and_Weather_Sensor_Locations_-_Map.csv" file with the locations of the sensors.
 
+Now we can attempt plotting a little bit
+
+```{r}
+library("ggplot2", lib.loc="~/R/win-library/3.3")
+
+qplot(fdf$Measurement.Timestamp, fdf$Air.Temperature, color = I("magenta"), 
+      size = I(.5), alpha = I(1/2))
+```
 
 
+As we can see ggplo2 'understands' our Date/Time format. Interestingly enough there is a gap in data in May.
+
+```{r}
+qplot(sdf$Measurement.Timestamp, sdf$Air.Temperature, color = I("red"), 
+      size = I(.5), alpha = I(1/2))
+```
+
+```{r}
+qplot(odf$Measurement.Timestamp, odf$Air.Temperature, color = I("green"), 
+      size = I(.5), alpha = I(1/2))
+```
 
 When you save the notebook, an HTML file containing the code and output will be saved alongside it (click the *Preview* button or press *Ctrl+Shift+K* to preview the HTML file).
