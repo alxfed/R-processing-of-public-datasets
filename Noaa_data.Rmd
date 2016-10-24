@@ -137,7 +137,7 @@ ohr <- ohr[!is.na(ohr$Measurement.Timestamp),]
 qplot(Measurement.Timestamp, Air.Temperature, data = ohr, color = I("magenta"), size = I(.5))
 ```
 
-Now everything is ok. The missinf value was in the Measurement.Timestamp, not in the Temperature.
+Now everything is ok. The missing value was in the Measurement.Timestamp, not in the Temperature.
 
 Now let's learn to calculate Humidity from Temperature.Dewpoint and vice versa.
 
