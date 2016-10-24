@@ -56,10 +56,19 @@ NOAA cdo http://www.ncdc.noaa.gov/cdo-web/token
  documentation http://www.ncdc.noaa.gov/cdo-web/webservices/v2
 Token:	NbgcGSTExtVsfjGNSVmUJxsYtRykAPLc
 
+There is a package 'rnoaa' too. MIRACULOUSLY (!!!) it has an "isd_read(path)" function in it that READS THE LOCAL ISD/ISH file!
 
 
 ```{r}
-plot(cars)
+library("rnoaa", lib.loc="~/R/win-library/3.3")
+#file <- system.file("E:/R/R-processing-of-public-datasets/725300-94846-2016.gz", package = "rnoaa")
+ohr <- isd_read("E:/R/R-processing-of-public-datasets/725300-94846-2016.gz")
+```
+
+And it worked. Let's save what we've got for O'Hare
+
+```{r}
+save(ohr, file = "ohr.rda")
 ```
 
 Add a new chunk by clicking the *Insert Chunk* button on the toolbar or by pressing *Ctrl+Alt+I*.
