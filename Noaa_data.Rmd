@@ -46,7 +46,11 @@ KCPS
 725314 03960 ST LOUIS DOWNTOWN AIRPORT     US   IL KCPS  +38.571 -090.157 +0125.9 20060101 20161022
 725314 99999 CAHOKIA/ST. LOUIS             US   IL KCPS  +38.567 -090.150 +0126.0 19781219 20051231
 
-Downloaded these archived files and put them into the directory
+Downloaded these archived files and put them into the directory.
+It looks like the files are binaries produced with the help of
+a Fortran program.
+
+However! We now know the names and codes for the stations and their datasets, let's try retrieving the data through the web-service. The token is free (but it should be activated).
 
 NOAA cdo http://www.ncdc.noaa.gov/cdo-web/token
  documentation http://www.ncdc.noaa.gov/cdo-web/webservices/v2
