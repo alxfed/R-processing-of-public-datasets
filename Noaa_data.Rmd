@@ -81,7 +81,12 @@ ohr$Hour <-0; ohr$Day <- 0; ohr$Month <- 0
 save(ohr, file = "ohr.rda")
 ```
 
-For some reason the observations have a 5:59 point every day with all 9-s. Need to remove it from here.
+For some reason the observations have a 5:59 point every day with all 9-s. Need to remove it from here. Subsetting of course.
+
+```{r}
+ohr[ohr$time = "0559",] <- NULL
+```
+
 
 Add a new chunk by clicking the *Insert Chunk* button on the toolbar or by pressing *Ctrl+Alt+I*.
 
