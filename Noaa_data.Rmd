@@ -154,3 +154,8 @@ Now let's learn to calculate Humidity from Temperature.Dewpoint and vice versa.
 Temperature.Dewpoint = Temperature - (100 - Humidity)/5
 
 temperatures in Celsius. Humidity in %
+
+```{r}
+
+```
+
