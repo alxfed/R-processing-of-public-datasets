@@ -112,7 +112,7 @@ ohr <- subset(ohr, !time=="0559")
 
 ```
 
-Let's calculate the relative Humidity from the Temperature.Dewpoint and vise-versa. But first - let's look:
+Let's look:
 
 ```{r}
 library("ggplot2", lib.loc="~/R/win-library/3.3")
@@ -138,3 +138,6 @@ qplot(Measurement.Timestamp, Air.Temperature, data = ohr, color = I("magenta"), 
 ```
 
 Now everything is ok. The missinf value was in the Measurement.Timestamp, not in the Temperature.
+
+Now let's learn to calculate Humidity from Temperature.Dewpoint and vice versa.
+
