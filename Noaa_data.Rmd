@@ -4,9 +4,20 @@ output: html_notebook
 html_document: NOAA_Data.html
 ---
 
-This is an [R Markdown](http://rmarkdown.rstudio.com) Notebook. When you execute code within the notebook, the results appear beneath the code. 
+The ground based ASOS stations of airports have a historical repository here: ftp://ftp.ncdc.noaa.gov/pub/data/noaa/
 
-Try executing this chunk by clicking the *Run* button within the chunk or by placing your cursor inside it and pressing *Ctrl+Shift+Enter*. 
+Some quotes from the readme.txt:
+
+"This directory contains ISH/ISD data in directories 
+! by year.  
+Please note that ISH and ISD refer to the same data--
+Integrated Surface Data, sometimes called 
+Integrated Surface Hourly."
+
+"The filenames correspond with the station numbers listed in the ftp://ftp.ncdc.noaa.gov/pub/data/noaa/isd-history.txt file (and in
+ftp://ftp.ncdc.noaa.gov/pub/data/noaa/isd-history.csv )"
+
+Downloaded the *.csv and put it into the directory.
 
 ```{r}
 plot(cars)
