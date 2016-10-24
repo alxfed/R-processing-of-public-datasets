@@ -61,13 +61,23 @@ There is a package 'rnoaa' too. MIRACULOUSLY (!!!) it has an "isd_read(path)" fu
 
 ```{r}
 library("rnoaa", lib.loc="~/R/win-library/3.3")
-#file <- system.file("E:/R/R-processing-of-public-datasets/725300-94846-2016.gz", package = "rnoaa")
+#fle <- system.file("E:/R/R-processing-of-public-datasets/", "725300-94846-2016.gz", package = "rnoaa")
+#ohr <- isd_read(fle)
 ohr <- isd_read("E:/R/R-processing-of-public-datasets/725300-94846-2016.gz")
 ```
 
-And it worked. Let's save what we've got for O'Hare
+And it worked. Let's cut all the unnecessary and save what we've got for O'Hare
 
 ```{r}
+ohr$Hour <-0; ohr$Day <- 0; ohr$Month <- 0
+  ohr <- ohr[,c("usaf_station", 
+                        "date", "time",
+                        "Hour", "Day", "Month", 
+                        "temperature", 
+                        "temperature_dewpoint",
+                        "wind_direction", "wind_speed", 
+                        "air_pressure")]
+
 save(ohr, file = "ohr.rda")
 ```
 
