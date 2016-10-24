@@ -1,0 +1,8 @@
+name: Publish Document
+title:
+account: rpubs
+server: rpubs.com
+appId: https://api.rpubs.com/api/v1/document/221371/d0e762cb747d4a8aa3c573338b996ec0
+bundleId: https://api.rpubs.com/api/v1/document/221371/d0e762cb747d4a8aa3c573338b996ec0
+url: http://rpubs.com/alxfed/221371
+when: 1477333112.2606
