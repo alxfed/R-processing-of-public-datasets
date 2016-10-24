@@ -144,4 +144,8 @@ qplot(Measurement.Timestamp, Air.Temperature, data = df, size = I(.7), alpha = I
 ```
 
 
-When you save the notebook, an HTML file containing the code and output will be saved alongside it (click the *Preview* button or press *Ctrl+Shift+K* to preview the HTML file).
+From here we will go in two directions:
+
+1. Chapter "NOAA data" is devoted to getting some historical data from NOAA ASOS ground stations in order to fill the gap with missing data;
+
+2. Chapter "Weather data analysis" will be a description of simple observations based on the available data.
