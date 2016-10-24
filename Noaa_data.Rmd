@@ -78,16 +78,63 @@ ohr$Hour <-0; ohr$Day <- 0; ohr$Month <- 0
                         "wind_direction", "wind_speed", 
                         "air_pressure")]
 
-save(ohr, file = "ohr.rda")
+# save(ohr, file = "ohr.rda")
 ```
 
 For some reason the observations have a 5:59 point every day with all 9-s. Need to remove it from here. Subsetting of course.
 
 ```{r}
-ohr[ohr$time = "0559",] <- NULL
+ohr <- subset(ohr, !time=="0559")
+
+#Then we convert the Measurement.Timestamp to character
+#then - to POSIXlt
+  
+#  ohr$date <- as.character.POSIXt(ohr$date)
+  ohr$date <- as.POSIXlt(paste(ohr$date, ohr$time, sep =" "), 
+                                 format = "%Y-%m-%d %H%M", tz="")
+  
+#Now 'time' column can be removed
+  ohr$time <- NULL
+  
+#Let's uniry the names a little bit
+  
+  names(ohr) <- c("Station.Name", "Measurement.Timestamp", 
+                  "Hour", "Day", "Month", "Air.Temperature",
+                  "Temperature.Dewpoint", "Wind.Direction",
+                  "Wind.Speed", "Barometric.Pressure")
+
+## about dates format: http://www.stat.berkeley.edu/classes/s133/dates.html
+# fill in the columns Hour Day (day of the year mday for anthr) Month
+  
+  ohr$Hour <- ohr$Measurement.Timestamp$hour
+  ohr$Day <- ohr$Measurement.Timestamp$yday
+  ohr$Month <- ohr$Measurement.Timestamp$mon
+
 ```
 
+Let's calculate the relative Humidity from the Temperature.Dewpoint and vise-versa. But first - let's look:
 
-Add a new chunk by clicking the *Insert Chunk* button on the toolbar or by pressing *Ctrl+Alt+I*.
+```{r}
+library("ggplot2", lib.loc="~/R/win-library/3.3")
 
-When you save the notebook, an HTML file containing the code and output will be saved alongside it (click the *Preview* button or press *Ctrl+Shift+K* to preview the HTML file).
+qplot(Measurement.Timestamp, Air.Temperature, data = ohr, color = I("magenta"), 
+      size = I(.5), alpha = I(1/2))
+```
+
+There's are point with 999.9 temperature ( by boxplot(ohr$Air.Temperature) )in April and July, let's find and replace them with a medium between the neighbouring points or just exclude them. 
+
+```{r}
+ohr <- ohr[!(ohr$Air.Temperature==999.9),]
+
+qplot(Measurement.Timestamp, Air.Temperature, data = ohr, color = I("magenta"), size = I(.5), alpha = I(1/2))
+```
+
+There is a missing value too. Let's exclude it too.
+
+```{r}
+ohr <- ohr[!is.na(ohr$Air.Temperature),]
+ohr <- ohr[!is.na(ohr$Measurement.Timestamp),]
+qplot(Measurement.Timestamp, Air.Temperature, data = ohr, color = I("magenta"), size = I(.5))
+```
+
+Now everything is ok. The missinf value was in the Measurement.Timestamp, not in the Temperature.
